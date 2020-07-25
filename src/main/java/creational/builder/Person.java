@@ -6,38 +6,16 @@ import java.util.Objects;
 public class Person {
 
     private String fullName;
-    private LocalDate birthDate;
-    private int phone;
     private String mail;
     private String address;
+    private LocalDate birthDate;
+    private int phone;
 
-    public Person(String fullName, String mail, String address) {
-        this.fullName = fullName;
-        this.mail = mail;
-        this.address = address;
+
+    private Person() {
+
     }
 
-    public Person(String fullName, LocalDate birthDate, int phone, String mail, String address) {
-        this.fullName = fullName;
-        this.birthDate = birthDate;
-        this.phone = phone;
-        this.mail = mail;
-        this.address = address;
-    }
-
-    public Person(String fullName, LocalDate birthDate, String mail, String address) {
-        this.fullName = fullName;
-        this.birthDate = birthDate;
-        this.mail = mail;
-        this.address = address;
-    }
-
-    public Person(String fullName, int phone, String mail, String address) {
-        this.fullName = fullName;
-        this.phone = phone;
-        this.mail = mail;
-        this.address = address;
-    }
 
 
     @Override
@@ -65,4 +43,44 @@ public class Person {
                 ", address='" + address + '\'' +
                 '}';
     }
+
+    public static PersonBuilder createCustomPerson(String fullName, String mail, String address){
+        return new PersonBuilder(fullName, mail, address);
+    }
+
+    public static Person createDefaultPerson(){
+        return createCustomPerson("Jan", "Kowalski", "Mickiewicza 2")
+                .bornIn(LocalDate.of(2000, 10, 5))
+                .build();
+    }
+
+
+
+
+   static class PersonBuilder{
+
+        private Person person = new Person();
+
+        public PersonBuilder(String fullName, String mail, String address){
+            person.fullName = fullName;
+            person.mail = mail;
+            person.address = address;
+        }
+
+       public PersonBuilder withPhone(int number) {
+           person.phone = number;
+           return this;
+       }
+
+       public PersonBuilder bornIn(LocalDate date){
+           person.birthDate = date;
+           return this;
+       }
+
+       public Person build() {
+           return person;
+       }
+   }
+
 }
+
