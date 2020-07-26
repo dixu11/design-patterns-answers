@@ -19,7 +19,7 @@ public class Demo {
         CarEU bmw = new Bmw(5000);
 
         RaceSimulation raceSimulation = new RaceSimulation();
-       // raceSimulation.addCar(teslaEu);
+      //  raceSimulation.addCar(teslaEu);
         raceSimulation.addCar(bmw);
 
         raceSimulation.simulateRace(50);

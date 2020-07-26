@@ -1,7 +1,7 @@
 package creational.factoryMethod;
 
 public abstract class Weapon {
-    private String name;
+    protected String name;
 
     public Weapon(String name) {
         this.name = name;
